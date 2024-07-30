@@ -1,0 +1,93 @@
+<div class="header-section">
+    {% include 'admin_header.html' %}
+</div>
+<style>
+    .header-section {
+        background-color: rgba(0, 0, 95, 0.818); /* Change this to the color of your choice */
+        padding: 40px; /* Adjust padding as needed */
+    }
+    
+    table {
+        width: 1500px;
+        border-collapse: collapse;
+    }
+    
+    th, td {
+        padding: 10px;
+        text-align: left;
+        border-bottom: 1px solid #ddd;
+    }
+    
+    th {
+        background-color: #f2f2f2;
+    }
+    
+    tr.profile-card {
+        background-color: #fff;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        margin-bottom: 20px;
+        border-radius: 8px;
+    }
+</style>
+</head>
+<body>
+    <br>
+    <center>
+        <h1>STUDENTS</h1><br>
+        <table class="table" style="width:1000px;color:black">
+            <tr>
+                <td><b>Driving school name :</b><input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search for names.." title="Type in a name"></td>
+            </tr>
+        </table>
+        <table border="0">
+            <tr>
+                <th>SL.NO</th>
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th>Driving school</th>
+                <th>Place</th>
+                <th>Phone</th>
+                <th>Email</th>
+                <th>DOB</th>
+                <th>Gender</th>
+            </tr>
+            {% for i in ur %}
+            <tr class="profile-card">
+                <td>{{ forloop.counter }}</td>
+                <td id="mm">{{ i.fname }}</td>
+                <td>{{ i.lname }}</td>
+                <td class="username">{{ i.Drivingschool.name}}</td>
+                <td>{{ i.place }}</td>
+                <td>{{ i.phone }}</td>
+                <td>{{ i.email }}</td>
+                <td>{{ i.dob }}</td>
+                <td>{{ i.gender }}</td>
+            </tr>
+            {% endfor %}
+        </table>
+    </center>
+    <br><br><br><br><br><br><br>
+    <script>
+        function myFunction() {
+            var input, filter, table, tr, td, i, txtValue;
+            input = document.getElementById("myInput");
+            filter = input.value.toUpperCase();
+            table = document.querySelector("table[border='0']");
+            tr = table.getElementsByTagName("tr");
+        
+            for (i = 1; i < tr.length; i++) {
+                td = tr[i].getElementsByClassName("username")[0];
+                if (td) {
+                    txtValue = td.textContent || td.innerText;
+                    if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                        tr[i].style.display = "";
+                    } else {
+                        tr[i].style.display = "none";
+                    }
+                }       
+            }
+        }
+    </script>
+</body>
+</html>
+{% include 'footer.html' %}

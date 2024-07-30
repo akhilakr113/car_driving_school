@@ -1,0 +1,87 @@
+<div class="header-section">
+    {%include 'user_header.html'%}
+</div>
+    <style>
+        .header-section {
+            background-color: rgba(0, 0, 95, 0.818); /* Change this to the color of your choice */
+            padding: 40px; /* Adjust padding as needed */
+        }
+            /* Styles for the table */
+            table {
+                width: 100%;
+                border-collapse: collapse;
+                margin-bottom: 20px;
+            }
+    
+            th, td {
+                padding: 10px;
+                text-align: left;
+                border-bottom: 1px solid #ddd;
+            }
+    
+            th {
+                background-color: white;
+                color: black;
+            }
+    
+            /* Styles for the form */
+            form {
+                margin-bottom: 20px;
+            }
+    
+            input[type="text"] {
+                width: 100%;
+                padding: 10px;
+                border: 1px solid #ccc;
+                border-radius: 4px;
+                box-sizing: border-box;
+            }
+    
+            input[type="submit"] {
+                background-color: #4CAF50;
+                color: white;
+                padding: 10px 20px;
+                border: none;
+                border-radius: 4px;
+                cursor: pointer;
+            }
+    
+            input[type="submit"]:hover {
+                background-color: #45a049;
+            }
+        </style>
+    <br>
+    <center>
+        <h1 align="center">Trainer</h1><br>
+    <table   >
+        <tr>
+            <th>SL.NO</th>
+            <th> Name</th>
+            <th>Place</th>
+            <th>Phone</th>
+            <th>Email</th>
+            <th>DOB</th>
+            <th>Gender</th>
+        </tr>
+        {%for i  in th%}
+        <tr>
+            <td>{{ forloop.counter }}</td>
+            <td>{{i.trainer.fname}} {{i.trainer.lname}}</td>
+            <td>{{i.trainer.place}}</td>
+            <td>{{i.trainer.phone}}</td>
+            <td>{{i.trainer.email}}</td>
+            <td>{{i.trainer.dob}}</td>
+            <td>{{i.trainer.gender}}</td>
+            <td><a href="/userchatwith_trainer/{{ i.trainer.login_id }}" class="btn btn-outline-success">Chat</a></td>
+
+        </tr>
+
+        {% endfor %}
+
+    </table>
+</center>
+    <br><br><br><br><br><br><br>
+</body>
+</html>
+
+{%include 'footer.html'%}

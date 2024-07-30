@@ -1,0 +1,65 @@
+<div class="header-section">
+
+    {% include 'driving_school_header.html' %}
+    </div>
+    <style>
+        .header-section {
+            background-color: rgba(0, 0, 95, 0.818); /* Change this to the color of your choice */
+            padding: 40px; /* Adjust padding as needed */
+        }
+  
+    table {
+        width: 1500px;
+        border-collapse: collapse;
+    }
+    
+    th, td {
+        padding: 10px;
+        text-align: left;
+        border-bottom: 1px solid #ddd;
+    }
+    
+    th {
+        background-color: #f2f2f2;
+    }
+    
+    tr.profile-card {
+        background-color: #fff;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        margin-bottom: 20px;
+        border-radius: 8px;
+    }
+</style>
+    <center>
+    <br>
+    <h1 align="center">Queries</h1><br>
+
+    <table class="table table-light" style="width: 1000px;">
+        <tr>
+            <th>SL.NO</th>
+            <th>Trainer </th>
+            <th>Message</th>
+            <th>Reply</th>
+            <th>Date</th>
+            <th></th>
+        </tr>
+        {% for i in qu %}
+        <tr>
+            <td>{{ forloop.counter }}</td>
+            <td>{{ i.trainer.fname }} {{ i.trainer.lname }}</td>
+            <td>{{ i.message }}</td>
+            <td>{{ i.reply }}</td>
+            <td>{{ i.date }}</td>
+            {%if i.reply == 'pending' %}
+            <td><a href="/sendqueries/{{ i.queries_id }}" class="btn btn-outline-success">Send Reply</a></td>
+            {%endif%}
+        </tr>
+        {% endfor %}
+    </table>
+    <br><br><br><br><br><br><br>
+</center>
+</body>
+</html>
+
+{%include 'footer.html'%}
+

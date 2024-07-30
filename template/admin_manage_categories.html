@@ -1,0 +1,98 @@
+
+<div class="header-section">
+
+    {% include 'admin_header.html' %}
+    </div>
+    <style>
+        .header-section {
+            background-color: rgba(0, 0, 95, 0.818); /* Change this to the color of your choice */
+            padding: 40px; /* Adjust padding as needed */
+        }
+        /* Styles for the table */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+        }
+
+        th, td {
+            padding: 10px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+
+        th {
+            background-color: white;
+            color: black;
+        }
+
+        /* Styles for the form */
+        form {
+            margin-bottom: 20px;
+        }
+
+        input[type="text"] {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+
+        input[type="submit"] {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #45a049;
+        }
+    </style>
+<br>
+    <!-- Your main content here -->
+<h1 align="center">Category</h1>
+<br>
+    {% if up %}
+    <center>
+        <form action="" method="post">
+            <table style="width:800px">
+                <tr>
+                    <th>Category Name</th>
+                    <td><input type="text" name="catname" class="form-control" value="{{up.category_name}}"></td>
+                </tr>
+                <tr>
+                    <td align="center" colspan="3"><input type="submit" name="cat" class="btn btn-success"></td>
+                </tr>
+            </table>
+        </form>
+    </center>
+    {% else %}
+    <center>
+        <form action="" method="post">
+            <table style="width:800px">
+                <tr>
+                    <th>Category Name</th>
+                    <td><input type="text" name="catname" class="form-control"></td>
+                </tr>
+                <tr>
+                    <td align="center" colspan="4"><input type="submit" name="cat" class="btn btn-success"></td>
+                </tr>
+            </table>
+        </form>
+    </center>
+    {% endif %}
+
+    <!-- Your table -->
+    <center>
+        <table class="table table-info" style="width: 800px;">
+            <!-- Table content goes here -->
+        </table>
+    </center>
+    <br><br><br><br><br>
+
+    {% include 'footer.html' %}
+

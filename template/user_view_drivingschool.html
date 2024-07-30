@@ -1,0 +1,85 @@
+<div class="header-section">
+    {%include 'user_header.html'%}
+</div>
+    <style>
+        .header-section {
+            background-color: rgba(0, 0, 95, 0.818); /* Change this to the color of your choice */
+            padding: 40px; /* Adjust padding as needed */
+        }
+        body {
+            font-family: Arial, sans-serif;
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        th, td {
+            padding: 10px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+
+        th {
+            background-color: #f2f2f2;
+        }
+
+       
+
+        .btn {
+            padding: 8px 16px;
+            text-decoration: none;
+            font-size: 14px;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        .btn-success {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+        }
+
+        .btn-success:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+
+<center>
+    <br>
+    <h1>Driving School details</details></h1><br>
+    <table>
+        <tr>
+            <th>Name</th>
+            <th>Place</th>
+            <th>Phone</th>
+            <th>Email</th>
+            <th>License</th>
+            <th></th>
+        </tr>
+
+        <tr>
+            <td>{{ obj.Drivingschool.name }}</td>
+            <td>{{ obj.Drivingschool.place }}</td>
+            <td>{{ obj.Drivingschool.phone }}</td>
+            <td>{{ obj.Drivingschool.email }}</td>
+            <td>{{ obj.Drivingschool.license }}</td>
+            <td><a class="btn btn-success" href="http://www.google.com/maps?q={{obj.Drivingschool.Latitude}},{{obj.Drivingschool.Longitude}}">Click Me</a></td>
+
+         
+            <td></td>
+        </tr>
+    </table>
+</center>
+<br><br><br><br><br><br><br>
+
+{%include 'footer.html'%}
+

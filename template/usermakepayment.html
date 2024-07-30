@@ -1,0 +1,97 @@
+
+<style type="text/css">
+    body {
+      font-family: 'Arial', sans-serif;
+      background-color: #f8f9fa;
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+  
+    #payment-container {
+      max-width: 400px;
+      margin: 50px auto;
+      padding: 20px;
+      background-color: #fff;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      border-radius: 8px;
+    }
+  
+    #payment-container img {
+      width: 100%;
+      margin-bottom: 20px;
+    }
+  
+    input.form-control {
+      width: 100%;
+      margin-bottom: 15px;
+      padding: 12px;
+      box-sizing: border-box;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      font-size: 16px;
+    }
+  
+    input.btn-success {
+      background-color: #28a745;
+      color: #fff;
+      padding: 15px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 18px;
+    }
+  
+    input.btn-success:hover {
+      background-color: #218838;
+    }
+  
+    h1 {
+      color: #080808;
+      font-size: 24px;
+      margin-bottom: 20px;
+    }
+  
+    h6 {
+      color: #333;
+      font-size: 16px;
+      margin-bottom: 20px;
+    }
+  
+    hr {
+      border: 1px solid #ddd;
+      margin: 20px 0;
+    }
+  
+    small {
+      color: #555;
+    }
+  </style>
+  
+  <div id="payment-container" align="center">
+    <form method="post">
+      {% csrf_token %}
+  
+      <h1>Payment</h1>
+      <img src="/static/assets/img/payment.png"style="height:50px" alt="Payment Image">
+  
+      <input type="text" placeholder="Card Number" class="form-control" required pattern="[0-9]{16}" maxlength="16" title="Enter 16 digit Card Number">
+  
+      <div style="display: flex; gap: 10px;">
+        <input type="text" placeholder="CVV" class="form-control" required pattern="[0-9]{3}" maxlength="3" title="Enter 3 digit CVV" style="flex: 1;">
+        <input type="date" placeholder="Exp Date (MM/YY)" class="form-control" required pattern="[0-9,/]{5}" name="edate" title="Enter month and year" style="flex: 2;">
+      </div>
+  
+      <input type="text" placeholder="Card Holder Name" class="form-control" data-valid='only-text' required>
+  
+      <hr>
+  
+      <h6>Total Amount: {{ total }}</h6>
+  
+      <hr>
+  
+      <input type="submit" value="PAY NOW" class="btn btn-success" name="pay">
+    </form>
+  </div>
+  
+  

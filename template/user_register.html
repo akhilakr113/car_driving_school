@@ -1,0 +1,127 @@
+<div class="header-section">
+
+    {%include 'public_header.html'%}
+</div>
+    <style>
+        .header-section {
+            background-color: rgba(0, 0, 95, 0.818); /* Change this to the color of your choice */
+            padding: 40px; /* Adjust padding as needed */
+        }
+        form {
+            margin: 0 auto;
+            width: 50%;
+            padding: 20px;
+        }
+
+        table {
+            width: 100%;
+        }
+
+        th, td {
+            padding: 10px;
+            text-align: left;
+            /* border-bottom: 1px solid #ddd; */
+        }
+
+        th {
+            background-color: white;
+        }
+
+        input[type="text"],
+        input[type="email"],
+        input[type="password"] {
+            width: 100%;
+            padding: 8px;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+
+        input[type="submit"] {
+            width: auto;
+            padding: 10px 20px;
+            background-color: #4CAF50;
+            color: transparent;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #45a049;
+        }z
+    </style>
+
+    <br>
+
+   <h1 align="center">STUDENT REGISTRATION</h1> 
+    <form action="" method="post">
+        <table>
+            <tr>
+                <th>First Name</th>
+                <td><input type="text" name="fname" required pattern="[A-Za-z]{3,}" title="Please enter a valid first name (letters only)" minlength="3" maxlength="20"></td>
+            </tr>
+            <tr>
+                <th>Last Name</th>
+                <td><input type="text" required pattern="[A-Za-z/]{1,}" title="Please enter a valid last name (letters only)" minlength="1" maxlength="100" name="lname"></td>
+            </tr>
+            <tr>
+                <th>Place</th>
+                <td><input type="text" required pattern="[A-Za-z]{3,}" title="Please enter a valid place (letters only)" minlength="2" maxlength="100" name="place" ></td>
+            </tr>
+            <tr>
+                <th>Phone</th>
+                <td><input type="text"  required pattern="[0-9]{10}" title="Please enter a valid 10-digit phone number" minlength="10" maxlength="10" name="no" ></td>
+            </tr>
+            <tr>
+                <th>Driving School</th>
+                <td>
+                    <select name="ds" id="" required class="form-control">
+                        {% for i in m %}
+                        <option value="{{i.drivingschool_id}}">{{i.name}}</option>
+                        {%endfor%}
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <th>Email</th>
+                <td><input type="email" required="" pattern="[a-z0-9._%+\-]+@[a-zA-Z0-9.\-]+\.[a-zA-Z]{3,}$"  name="mail"></td>
+            </tr>
+            <tr>
+                <th>DOB</th>
+                <td><input type="date" class="form-control" id="date"  required name="dob" ></td>
+            </tr>
+            <tr>
+                <th>Gender</th>
+                <td>
+                    <input type="radio" value="Male" name="gender">Male
+                    <input type="radio" name="gender" value="Female">Female
+                </td>
+            </tr>
+
+            <th>Username</th>
+				<td><input type="text" name="uname" required title="Please enter a valid Username" minlength="6" maxlength="20"></td>
+			</tr>
+			<tr>
+				<th>Password</th>
+				<td><input type="password" name="passw" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters" required ></td>
+			</tr>
+
+            <tr>
+                <td colspan="2" style="text-align:center;"><input type="submit" name="Register" class="btn btn-success" value="Register"></td>
+            </tr>
+        </table>
+    </form>
+
+</body>
+</html>
+
+<script>
+    var today = new Date();
+    var dd = String(today.getDate()).padStart(2, '0');
+    var mm = String(today.getMonth() + 1).padStart(2, '0');
+    var yyyy = today.getFullYear();
+    today = yyyy + '-' + mm + '-' + dd;
+    document.getElementById('date').setAttribute('max', today);
+</script>
+
+{%include 'footer.html'%}

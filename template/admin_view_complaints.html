@@ -1,0 +1,67 @@
+<div class="header-section">
+
+    {% include 'admin_header.html' %}
+    </div>
+    <style>
+        .header-section {
+            background-color: rgba(0, 0, 95, 0.818); /* Change this to the color of your choice */
+            padding: 40px; /* Adjust padding as needed */
+        }
+    table {
+        width: 1500px;
+        border-collapse: collapse;
+    }
+    
+    th, td {
+        padding: 10px;
+        text-align: left;
+        border-bottom: 1px solid #ddd;
+    }
+    
+    th {
+        background-color: #f2f2f2;
+    }
+    
+    tr.profile-card {
+        background-color: #fff;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        margin-bottom: 20px;
+        border-radius: 8px;
+    }
+</style>
+    <br>
+    <center>
+<h1>COMPLAINTS</h1>
+<br>
+    <table> 
+        <tr>
+            <th>SL.NO</th>
+            <th>User Name</th>
+            <th>COMPLAINT</th>
+            <th>REPLY</th>
+            <th>DATE</th>
+            <th></th>
+            <th></th>
+        </tr>
+
+        {%for i in comp%}
+        <tr>
+            <td>{{forloop.counter}}</td>
+            <td>{{i.user.fname}} {{i.user.lname}}</td>
+            <td>{{i.complaint}}</td>
+            <td>{{i.reply_text}}</td>
+            <td>{{i.date}}</td>
+            {%if i.reply_text == 'pending' %}
+            <td><a href="/admin_send_reply/{{i.complaint_id}}" class="btn btn-outline-danger">Send Reply</a></td>
+            {%endif%}
+        </tr>
+        {%endfor%}
+
+    </table>
+    <br><br><br><br><br><br><br>
+
+
+</center>
+
+
+{%include 'footer.html'%}

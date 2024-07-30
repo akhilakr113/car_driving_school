@@ -1,0 +1,117 @@
+<div class="header-section">
+    {% include 'admin_header.html' %}
+</div>
+
+<style>
+    .header-section {
+        background-color: rgba(0, 0, 95, 0.818);
+        padding: 40px;
+    }
+    body {
+        font-family: Arial, sans-serif;
+    }
+    h1 {
+        text-align: center;
+        margin-bottom: 30px;
+    }
+    table {
+        width: 100%;
+        border-collapse: collapse;
+    }
+    th, td {
+        padding: 10px;
+        text-align: left;
+        border-bottom: 1px solid #ddd;
+    }
+    th {
+        background-color: #f2f2f2;
+    }
+    .btn {
+        padding: 8px 16px;
+        text-decoration: none;
+        font-size: 14px;
+        border-radius: 4px;
+        cursor: pointer;
+    }
+    .btn-success {
+        background-color: #4CAF50;
+        color: white;
+        border: none;
+    }
+    .btn-success:hover {
+        background-color: #45a049;
+    }
+</style>
+
+<body>
+    <center>
+        <br>
+        <h1>Driving School</h1>
+        <br>
+        <table class="table" style="width:1000px;color:black">
+            <tr>
+                <td><b>Driving school name :</b>
+                    <input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search for names.." title="Type in a name">
+                </td>
+            </tr>
+        </table>
+        <table id="drivingSchoolTable">
+            <thead>
+                <tr>
+                    <th>SL.NO</th>
+                    <th>Name</th>
+                    <th>Place</th>
+                    <th>Phone</th>
+                    <th>Email</th>
+                    <th>License</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for i in dr %}
+                <tr>
+                    <td>{{ forloop.counter }}</td>
+                    <td class="username">{{ i.name }}</td>
+                    <td>{{ i.place }}</td>
+                    <td>{{ i.phone }}</td>
+                    <td>{{ i.email }}</td>
+                    <td>{{ i.license }}</td>
+                    <td><a class="btn btn-success" href="http://www.google.com/maps?q={{ i.Latitude }},{{ i.Longitude }}">Click Me</a></td>
+                    {% if i.login.usertype == 'pending' %}
+                    <td>
+                        <a class="btn btn-success" href="/adminaccept_driving/{{ i.drivingschool_id }}/{{ i.login_id }}">Accept</a>
+                        <a class="btn btn-success" href="/adminreject_driving/{{ i.drivingschool_id }}/{{ i.login_id }}">Reject</a>
+                    </td>
+                    {% else %}
+                    <td><a class="btn btn-success" href="/viewtrainer/{{ i.drivingschool_id }}">View Trainer</a></td>
+                    {% endif %}
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </center>
+
+    <script>
+        function myFunction() {
+            var input, filter, table, tr, td, i, txtValue;
+            input = document.getElementById("myInput");
+            filter = input.value.toUpperCase();
+            table = document.getElementById("drivingSchoolTable");
+            tr = table.getElementsByTagName("tr");
+
+            for (i = 1; i < tr.length; i++) {
+                td = tr[i].getElementsByClassName("username")[0];
+                if (td) {
+                    txtValue = td.textContent || td.innerText;
+                    if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                        tr[i].style.display = "";
+                    } else {
+                        tr[i].style.display = "none";
+                    }
+                }       
+            }
+        }
+    </script>
+</body>
+</html>
+{% include 'footer.html' %}

@@ -1,0 +1,65 @@
+<div class="header-section">
+
+    {% include 'driving_school_header.html' %}
+    </div>
+    <style>
+        .header-section {
+            background-color: rgba(0, 0, 95, 0.818); /* Change this to the color of your choice */
+            padding: 40px; /* Adjust padding as needed */
+        }
+    table {
+        width: 1500px;
+        border-collapse: collapse;
+    }
+    
+    th, td {
+        padding: 10px;
+        text-align: left;
+        border-bottom: 1px solid #ddd;
+    }
+    
+    th {
+        background-color: #f2f2f2;
+    }
+    
+    tr.profile-card {
+        background-color: #fff;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        margin-bottom: 20px;
+        border-radius: 8px;
+    }
+</style>
+    <center>
+    <br><h1>DRIVING REQUEST</h1><br>
+    <table  style="width: 1000px;color: black;">
+        <tr>
+            <th>SL.NO</th>
+            <th>Username</th>
+            <th>Category</th>
+            <th>Status</th>
+            <th></th>
+        </tr>
+        {% for i in qu %}
+        <tr>
+            <td>{{ forloop.counter }}</td>
+            <td>{{ i.user.fname }} {{ i.user.lname }}</td>
+            <td>{{ i.category.category_name}}</td>
+            <td>{{ i.status }}</td>
+            {%if i.status == 'pending'%}
+            <td><a href="/drivingaccept_req/{{ i.driving_request_id }}" class="btn btn-outline-success">Accept</a></td>
+            <td><a href="/drivingreject_req/{{ i.driving_request_id }}" class="btn btn-outline-success">Reject</a></td>
+            {%elif i.status == 'paid'%}
+            <td><a href="/drivingassign_trainer/{{ i.driving_request_id }}" class="btn btn-outline-success">Trainer</a></td>
+
+            {%endif%}
+
+        </tr>
+        {% endfor %}
+    </table>
+    <br><br><br><br><br><br><br>
+</center>
+</body>
+</html>
+
+{%include 'footer.html'%}
+

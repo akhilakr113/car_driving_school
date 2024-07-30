@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tax Invoice</title>
+    <style>
+        body, html {
+            margin: 0;
+            padding: 0;
+            font-family: 'Arial', sans-serif;
+            background-color: #f5f7fa;
+            color: #555;
+        }
+
+        .container {
+            width: 80%;
+            margin: 50px auto;
+            background: #fff;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+        }
+
+        .invoice-header {
+            background-color: #007BFF;
+            color: #fff;
+            padding: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .invoice-header h1 {
+            margin: 0;
+            font-size: 24px;
+        }
+
+        .invoice-header .invoice-logo {
+            font-size: 24px;
+            font-weight: bold;
+        }
+
+        .invoice-body {
+            padding: 20px;
+        }
+
+        .invoice-info {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 20px;
+        }
+
+        .invoice-info div {
+            width: 48%;
+        }
+
+        .invoice-info h2 {
+            font-size: 18px;
+            margin-bottom: 10px;
+        }
+
+        .invoice-info p {
+            margin: 5px 0;
+            font-size: 14px;
+        }
+
+        .table-responsive {
+            overflow-x: auto;
+        }
+
+        .table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+        }
+
+        .table th, .table td {
+            border: 1px solid #ddd;
+            padding: 12px;
+            text-align: left;
+        }
+
+        .table th {
+            background-color: #007BFF;
+            color: #fff;
+        }
+
+        .total-section {
+            display: flex;
+            justify-content: flex-end;
+            margin-bottom: 20px;
+        }
+
+        .total-section h3 {
+            margin: 0;
+            font-size: 18px;
+            color: #333;
+        }
+
+        .total-section .total-amount {
+            font-size: 24px;
+            font-weight: bold;
+            color: #007BFF;
+            margin-left: 20px;
+        }
+
+        .invoice-footer {
+            text-align: center;
+            padding: 10px;
+            background-color: #f7f7f7;
+            border-top: 1px solid #ddd;
+            font-size: 14px;
+            color: #777;
+        }
+
+        .invoice-footer a {
+            color: #007BFF;
+            text-decoration: none;
+        }
+
+        button {
+            display: block;
+            width: 100px;
+            margin: 20px auto;
+            padding: 10px;
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    {% if b %}
+    <div class="container">
+        <div class="invoice-header">
+            <div class="invoice-logo">
+                PayingGuest.@gmail.com
+            </div>
+            <div>
+                <h1>Tax Invoice</h1>
+            </div>
+            <div>
+                <h1>Invoice - #009</h1>
+            </div>
+        </div>
+        <div class="invoice-body">
+            <div class="invoice-info">
+                <div>
+                    <h2>Billed To</h2>
+                    <p>{{b.user.Drivingschool.name}}</p>
+                    <p>{{b.user.Drivingschool.place}}</p>
+                    <p>{{b.user.Drivingschool.phone}}</p>
+                    <p>{{b.user.Drivingschool.email}}</p>
+                </div>
+                <div>
+                    <h2>Invoice Details</h2>
+                    <p><strong>Invoice Date:</strong> {{cdate}}</p>
+                    
+                </div>
+            </div>
+            <div class="table-responsive">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>User Name</th>
+                            <th>Phone</th>
+                            <th>Place</th>
+                            <th>Email</th>
+                            <th>Amount</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>{{b.user.fname}} {{b.user.lname}}</td>
+                            <td>{{b.user.phone}} </td>
+                            <td>{{b.user.place}} </td>
+                            <td>{{b.user.email}} </td>
+                            <td>₹{{amt}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="total-section">
+                <h3>Grand Total:</h3>
+                <div class="total-amount">₹{{amt}}</div>
+            </div>
+        </div>
+        <div class="invoice-footer">
+            Thank you for your business!<br>
+            If you have any questions, feel free to <a href="mailto:PayingGuest.@gmail.com">contact us</a>.
+        </div>
+    </div>
+
+    <button onclick="Print()">Print</button>
+
+    <script>
+        function Print() {
+            window.print();
+        }
+    </script>
+    {% endif %}
+</body>
+</html>

@@ -1,0 +1,131 @@
+<div class="header-section">
+
+    {% include 'trainer_header.html' %}
+    </div>
+    <style>
+        .header-section {
+            background-color: rgba(0, 0, 95, 0.818); /* Change this to the color of your choice */
+            padding: 40px; /* Adjust padding as needed */
+        }
+    /* Styles for the table */
+    table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-bottom: 20px;
+    }
+
+    th, td {
+        padding: 10px;
+        text-align: left;
+        border-bottom: 1px solid #ddd;
+    }
+
+    th {
+        background-color: white;
+        color: black;
+    }
+
+    /* Styles for the form */
+    form {
+        margin-bottom: 20px;
+    }
+
+    input[type="text"] {
+        width: 100%;
+        padding: 10px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        box-sizing: border-box;
+    }
+
+    input[type="submit"] {
+        background-color: #4CAF50;
+        color: white;
+        padding: 10px 20px;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+    }
+
+    input[type="submit"]:hover {
+        background-color: #45a049;
+    }
+</style>
+
+<script>
+    function validateForm() {
+        var fileInput = document.getElementById('videoFile');
+        var fileName = fileInput.value;
+        var allowedExtensions = /(\.mp4)$/i; // Allowed extensions: .mp4
+
+        if (!allowedExtensions.exec(fileName)) {
+            alert('Invalid file format. Please upload only MP4 video files.');
+            return false;
+        }
+
+        return true;
+    }
+</script>
+
+<!-- <div class="header-section">
+    {% include 'trainer_header.html' %}
+</div> -->
+
+
+
+<!-- <style>
+    /* Your CSS styles here */
+</style> -->
+<br>
+<center>
+    <h1>Manage Tutorials</h1><br>
+    <form action="" method="post" enctype="multipart/form-data" onsubmit="return validateForm()">
+        <table style="width: 500px;">
+            <tr>
+                <th>Tutorial</th>
+                <td><input type="file" name="tut" id="videoFile" class="form-control"></td>
+            </tr>
+            <tr>
+                <th>Type</th>
+                <td><input type="text" name="type" class="form-control"></td>
+            </tr>
+            <tr>
+                <td align="center" colspan="2"><input type="submit" name="ADD" class="btn btn-outline-success"></td>
+            </tr>
+        </table>
+    </form>
+</center>
+
+<br><br><br>
+
+<center>
+    <center>
+        <table  >
+            <tr>
+                <th>SL.NO</th>
+                <th>VIDEO</th>
+                <th>TYPE</th>
+                <th>DATE</th>
+            </tr>
+    
+            {%for i in tt%}
+            <tr>
+                <td>{{forloop.counter}}</td>
+    
+                <td><video controls height="200px" width="200px">
+                        <source src="/static/{{ i.tutorial }}" type="video/mp4">
+                    </video></td>
+    
+                <td>{{i.type}}</td>
+                <td>{{i.date}}</td>
+                
+                <td><a href="/deletetutorial/{{i.tutorial_id}}" class="btn btn-outline-danger">Delete</a></td>
+    
+            </tr>
+            {%endfor%}
+    
+        </table>
+    </center>
+</center>
+
+{% include 'footer.html' %}

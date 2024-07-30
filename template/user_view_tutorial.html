@@ -1,0 +1,94 @@
+<div class="header-section">
+    {% include 'user_header.html' %}
+</div>
+<style>
+    .header-section {
+        background-color: rgba(0, 0, 95, 0.818);
+        padding: 40px;
+    }
+    table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-bottom: 20px;
+    }
+    th, td {
+        padding: 10px;
+        text-align: left;
+        border-bottom: 1px solid #ddd;
+    }
+    th {
+        background-color: white;
+        color: black;
+    }
+    form {
+        margin-bottom: 20px;
+    }
+    input[type="text"] {
+        width: 100%;
+        padding: 10px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        box-sizing: border-box;
+    }
+    input[type="submit"] {
+        background-color: #4CAF50;
+        color: white;
+        padding: 10px 20px;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+    }
+    input[type="submit"]:hover {
+        background-color: #45a049;
+    }
+</style>
+<center>
+    <br>
+    <h1 align="center">Tutorials</h1><br>
+    <br>
+    <table style="width:1000px;color:black">
+        <tr>
+            <td><b>Driving school name :</b>
+                <input type="date" id="myInput" onkeyup="myFunction()" placeholder="Search for names.." title="Type in a name">
+            </td>
+        </tr>
+    </table>
+    <table id="drivingSchoolTable">
+        <tr>
+            <th>SL.NO</th>
+            <th>TYPE</th>
+            <th>Tutorial</th>
+            <th>DATE</th>
+        </tr>
+        {% for i in obj %}
+        <tr>
+            <td>{{ forloop.counter }}</td>
+            <td>{{ i.type }}</td>
+            <td><video src="/static/{{ i.tutorial }}" controls width="200px" height="200px"></video></td>
+            <td class="date">{{ i.date }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+</center>
+<script>
+    function myFunction() {
+        var input, filter, table, tr, td, i, txtValue;
+        input = document.getElementById("myInput");
+        filter = input.value.toUpperCase();
+        table = document.getElementById("drivingSchoolTable");
+        tr = table.getElementsByTagName("tr");
+
+        for (i = 1; i < tr.length; i++) {
+            td = tr[i].getElementsByClassName("date")[0];
+            if (td) {
+                txtValue = td.textContent || td.innerText;
+                if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                    tr[i].style.display = "";
+                } else {
+                    tr[i].style.display = "none";
+                }
+            }       
+        }
+    }
+</script>
+{% include 'footer.html' %}
